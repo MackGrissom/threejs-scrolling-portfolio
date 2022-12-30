@@ -29,16 +29,8 @@ const material2 = new THREE.MeshStandardMaterial({ color: 'orange', wireframe: t
 const material3 = new THREE.MeshStandardMaterial({ color: 'black', wireframe: true });
 
 const Icosahedron = new THREE.Mesh(geometry, material);
-const shape2 = new THREE.Mesh(geometry, material2)
-const shape3 = new THREE.Mesh(geometry, material2)
-const shape4 = new THREE.Mesh(geometry, material2)
-const shape5 = new THREE.Mesh(geometry, material2)
+scene.add(Icosahedron);
 
-scene.add(Icosahedron, shape2,shape3, shape4. shape5 );
-
-shape2.position.x += -100;
-shape2.position.y += 70;
-shape2.position.z += 100;
 
 
 
@@ -56,8 +48,10 @@ scene.add(pointLight, ambientLight);
 // const gridHelper = new THREE.GridHelper(200, 50);
 // scene.add(lightHelper, gridHelper)
 
+
+// controls and stars
 const controls = new OrbitControls(camera, renderer.domElement);
-const starTexture = new THREE.TextureLoader().load('texture.jpg')
+const starTexture = new THREE.TextureLoader().load('./Assets/textures/star.texture.jpg')
 function addStar() {
   const geometry = new THREE.SphereGeometry(0.25, 24, 24);
   const material = new THREE.MeshStandardMaterial({ map: starTexture });
@@ -71,7 +65,7 @@ function addStar() {
   scene.add(star);
 }
 
-Array(1000).fill().forEach(addStar);
+Array(1500).fill().forEach(addStar);
 
 
 
@@ -81,14 +75,6 @@ Array(1000).fill().forEach(addStar);
 const spaceTexture = new THREE.TextureLoader().load('./Assets/textures/starz.jpg');
 scene.background = spaceTexture;
 
-
-// Avatar
-
-// const mackTexture = new THREE.TextureLoader().load('mack.png');
-
-// const mack = new THREE.Mesh(new THREE.PlaneGeometry(3, 3, 3), new THREE.MeshBasicMaterial({ map: mackTexture }));
-
-// scene.add(mack);
 
 // textures & positioning
 
@@ -100,6 +86,7 @@ const lava = new THREE.TextureLoader().load('./Assets/textures/lava.jpg')
 const paint = new THREE.TextureLoader().load('./Assets/textures/paint.jpg')
 
   
+// planets
 const texture = new THREE.Mesh(
   new THREE.SphereGeometry(3, 32, 32),
   new THREE.MeshStandardMaterial({
@@ -107,6 +94,8 @@ const texture = new THREE.Mesh(
     normalMap: normalTexture,
   })
 );
+texture.position.z = 30;
+texture.position.setX(-10);
 
 const  solarsystem = new THREE.Mesh(
   new THREE.SphereGeometry(3,32,32),
@@ -115,6 +104,8 @@ const  solarsystem = new THREE.Mesh(
     normalMap: normalTexture4
   })
 )
+solarsystem.position.z = 20;
+solarsystem.position.x = 25;
 const  solarsystem2 = new THREE.Mesh(
   new THREE.SphereGeometry(3,32,32),
   new THREE.MeshStandardMaterial({
@@ -144,14 +135,6 @@ const  solarsystem4 = new THREE.Mesh(
 solarsystem4.position.z = 50;
 solarsystem4.position.x = -20;
 
-
-
-
-
-solarsystem.position.z = 20;
-solarsystem.position.x = 25;
-texture.position.z = 30;
-texture.position.setX(-10);
 scene.add(texture, solarsystem, solarsystem2, solarsystem3, solarsystem4);
 
 
@@ -174,17 +157,7 @@ function moveCamera() {
   solarsystem3.rotation.z += 0.05;
   solarsystem4.rotation.x += 0.005;
   solarsystem4.rotation.y += 0.075;
-  solarsystem4.rotation.z += 0.05;
-  shape2.rotation.x += 0.005;
-  shape2.rotation.y += 0.075;
-  shape2.rotation.z += 1.05;
-  shape3.rotation.x += 0.005;
-  shape3.rotation.y += 0.075;
-  shape3.rotation.z += 1.05;
-  shape4.rotation.x += 0.005;
-  shape4.rotation.y += 0.075;
-  shape4.rotation.z += 1.05;
-  
+  solarsystem4.rotation.z += 0.05; 
   camera.position.z = t * -0.03;
   camera.position.x = t * -0.0002;
   camera.rotation.y = t * -0.0002;
@@ -201,14 +174,7 @@ function animate() {
   Icosahedron.rotation.x += 0.01;
   Icosahedron.rotation.y += 0.0005;
 
-  shape2.rotation.x += 0.01;
-  shape2.rotation.y += 0.0005;
 
-  shape3.rotation.x += 0.01;
-  shape3.rotation.y += 0.0005;
-
-  shape4.rotation.x += 0.01;
-  shape4.rotation.y += 0.0005;
 
   solarsystem.rotation.z += 0.001;
   solarsystem.rotation.x += 0.01;
