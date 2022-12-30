@@ -16,6 +16,10 @@ canvas {
   font-style: normal;
 }
 
+a {
+  text-decoration: none;
+  color: yellow;
+}
 
 main {
   width: 100vw;
@@ -69,8 +73,9 @@ canvas {
   }
 
   blockquote p {
-    color: black;
-    background-color: white;
+    color: rgb(255, 243, 77);
+   
+    background-color: none;
     font-size: 4rem;
     display: inline;
     line-height: 1;

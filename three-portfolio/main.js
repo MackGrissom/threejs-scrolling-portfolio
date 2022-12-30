@@ -23,10 +23,20 @@ renderer.render(scene, camera);
 // Icosahedron
 
 const geometry = new THREE.IcosahedronGeometry(15, 1, 16, 100);
-const material = new THREE.MeshStandardMaterial({ color: 'white', wireframe:true });
-const Icosahedron = new THREE.Mesh(geometry, material);
+const geometry2 = new THREE.TorusGeometry(5, 5, 64, 8);
+const material = new THREE.MeshStandardMaterial({ color: 'white', wireframe: true });
+const material2 = new THREE.MeshStandardMaterial({ color: 'yellow', wireframe: true });
 
-scene.add(Icosahedron);
+const Icosahedron = new THREE.Mesh(geometry, material);
+const shape2 = new THREE.Mesh(geometry2, material2)
+
+scene.add(Icosahedron, );
+
+shape2.position.x += -50;
+shape2.position.y += 10;
+shape2.position.z += -100;
+
+
 
 // Lights
 
@@ -51,13 +61,14 @@ function addStar() {
   const test = new THREE.BufferGeometryLoader
   const [x, y, z] = Array(3)
     .fill()
-    .map(() => THREE.MathUtils.randFloatSpread(100));
+    .map(() => THREE.MathUtils.randFloatSpread(250));
 
   star.position.set(x, y, z);
   scene.add(star);
 }
 
-Array(200).fill().forEach(addStar);
+Array(1000).fill().forEach(addStar);
+
 
 
 
@@ -65,6 +76,7 @@ Array(200).fill().forEach(addStar);
 
 const spaceTexture = new THREE.TextureLoader().load('starz.jpg');
 scene.background = spaceTexture;
+
 
 // Avatar
 
@@ -74,11 +86,16 @@ scene.background = spaceTexture;
 
 // scene.add(mack);
 
-// texture
+// texture & positioning
 
-const oilTexture = new THREE.TextureLoader().load('oil.jpg');
+const oilTexture = new THREE.TextureLoader().load('texture1.jpg');
 const normalTexture = new THREE.TextureLoader().load('normal.jpg');
+const normalTexture4 = new THREE.TextureLoader().load('normal4.jpg');
+const fivek = new THREE.TextureLoader().load('5k.jpeg')
+const lava = new THREE.TextureLoader().load('lava.jpg')
+const paint = new THREE.TextureLoader().load('paint.jpg')
 
+  
 const texture = new THREE.Mesh(
   new THREE.SphereGeometry(3, 32, 32),
   new THREE.MeshStandardMaterial({
@@ -87,25 +104,77 @@ const texture = new THREE.Mesh(
   })
 );
 
-scene.add(texture);
+const  solarsystem = new THREE.Mesh(
+  new THREE.SphereGeometry(3,32,32),
+  new THREE.MeshStandardMaterial({
+    map: fivek,
+    normalMap: normalTexture4
+  })
+)
+const  solarsystem2 = new THREE.Mesh(
+  new THREE.SphereGeometry(3,32,32),
+  new THREE.MeshStandardMaterial({
+    map: lava,
+  })
+)
+solarsystem2.position.z = -25;
+solarsystem2.position.x = -50;
 
+
+const  solarsystem3 = new THREE.Mesh(
+  new THREE.SphereGeometry(3,32,32),
+  new THREE.MeshStandardMaterial({
+    map: paint,
+    normalMap: normalTexture4
+  })
+)
+solarsystem3.position.z = -50;
+solarsystem3.position.x = -90;
+const  solarsystem4 = new THREE.Mesh(
+  new THREE.SphereGeometry(3,32,32),
+  new THREE.MeshStandardMaterial({
+    map: paint,
+    normalMap: normalTexture4
+  })
+)
+solarsystem4.position.z = 50;
+solarsystem4.position.x = -20;
+
+
+
+
+
+solarsystem.position.z = 20;
+solarsystem.position.x = 25;
 texture.position.z = 30;
 texture.position.setX(-10);
+scene.add(texture, solarsystem, solarsystem2, solarsystem3, solarsystem4);
 
-// mack.position.z = -5;
-// mack.position.x = 2;
+
 
 // Scroll Animation
 
 function moveCamera() {
   const t = document.body.getBoundingClientRect().top;
-  texture.rotation.x += 0.05;
+  texture.rotation.x += 0.005;
   texture.rotation.y += 0.075;
   texture.rotation.z += 0.05;
-
-  // mack.rotation.y += 0.01;
-  // mack.rotation.z += 0.01;
-
+  solarsystem.rotation.x += 0.005;
+  solarsystem.rotation.y += 0.075;
+  solarsystem.rotation.z += 0.05;
+  solarsystem2.rotation.x += 0.005;
+  solarsystem2.rotation.y += 0.075;
+  solarsystem2.rotation.z += 0.05;
+  solarsystem3.rotation.x += 0.005;
+  solarsystem3.rotation.y += 0.075;
+  solarsystem3.rotation.z += 0.05;
+  solarsystem4.rotation.x += 0.005;
+  solarsystem4.rotation.y += 0.075;
+  solarsystem4.rotation.z += 0.05;
+  shape2.rotation.x += 0.005;
+  shape2.rotation.y += 0.075;
+  shape2.rotation.z += 1.05;
+  
   camera.position.z = t * -0.03;
   camera.position.x = t * -0.0002;
   camera.rotation.y = t * -0.0002;
@@ -121,10 +190,18 @@ function animate() {
 
   Icosahedron.rotation.x += 0.01;
   Icosahedron.rotation.y += 0.0005;
-  Icosahedron.rotation.z += 0.001;
+  solarsystem.rotation.z += 0.001;
+  solarsystem.rotation.x += 0.01;
+  solarsystem2.rotation.y += 0.0005;
+  solarsystem2.rotation.z += 0.001;
+  solarsystem3.rotation.y += 0.0005;
+  solarsystem3.rotation.z += 0.001;
+  solarsystem4.rotation.y += 0.0005;
+  solarsystem4.rotation.z += 0.001;
 
   texture.rotation.x += 0.005;
-
+  solarsystem.rotation.x+= 0.005;
+ 
   // controls.update();
 
   renderer.render(scene, camera);
