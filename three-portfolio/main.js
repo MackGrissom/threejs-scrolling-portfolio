@@ -20,13 +20,13 @@ camera.position.setX(-3);
 
 renderer.render(scene, camera);
 
-// Torus
+// Icosahedron
 
-const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-const material = new THREE.MeshStandardMaterial({ color: 0xff6347, wireframe:true });
-const torus = new THREE.Mesh(geometry, material);
+const geometry = new THREE.IcosahedronGeometry(15, 1, 16, 100);
+const material = new THREE.MeshStandardMaterial({ color: 'white', wireframe:true });
+const Icosahedron = new THREE.Mesh(geometry, material);
 
-scene.add(torus);
+scene.add(Icosahedron);
 
 // Lights
 
@@ -63,7 +63,7 @@ Array(200).fill().forEach(addStar);
 
 // Background
 
-const spaceTexture = new THREE.TextureLoader().load('texture1.jpg');
+const spaceTexture = new THREE.TextureLoader().load('starz.jpg');
 scene.background = spaceTexture;
 
 // Avatar
@@ -119,9 +119,9 @@ moveCamera();
 function animate() {
   requestAnimationFrame(animate);
 
-  torus.rotation.x += 0.01;
-  torus.rotation.y += 0.005;
-  torus.rotation.z += 0.01;
+  Icosahedron.rotation.x += 0.01;
+  Icosahedron.rotation.y += 0.0005;
+  Icosahedron.rotation.z += 0.001;
 
   texture.rotation.x += 0.005;
 

@@ -79,3 +79,10 @@ canvas {
   .left {
     grid-column: 6 / 12;
   }
+
+  header {
+    background-color: transparent;
+  }
+  .title{
+    opacity: none!important;
+  }
