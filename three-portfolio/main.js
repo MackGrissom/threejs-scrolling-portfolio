@@ -23,18 +23,22 @@ renderer.render(scene, camera);
 // Icosahedron
 
 const geometry = new THREE.IcosahedronGeometry(15, 1, 16, 100);
-const geometry2 = new THREE.TorusGeometry(5, 5, 64, 8);
+const geometry2 = new THREE.IcosahedronGeometry(5, 5, 64, 8);
 const material = new THREE.MeshStandardMaterial({ color: 'white', wireframe: true });
-const material2 = new THREE.MeshStandardMaterial({ color: 'yellow', wireframe: true });
+const material2 = new THREE.MeshStandardMaterial({ color: 'orange', wireframe: true });
+const material3 = new THREE.MeshStandardMaterial({ color: 'black', wireframe: true });
 
 const Icosahedron = new THREE.Mesh(geometry, material);
-const shape2 = new THREE.Mesh(geometry2, material2)
+const shape2 = new THREE.Mesh(geometry, material2)
+const shape3 = new THREE.Mesh(geometry, material2)
+const shape4 = new THREE.Mesh(geometry, material2)
+const shape5 = new THREE.Mesh(geometry, material2)
 
-scene.add(Icosahedron, );
+scene.add(Icosahedron, shape2,shape3, shape4. shape5 );
 
-shape2.position.x += -50;
-shape2.position.y += 10;
-shape2.position.z += -100;
+shape2.position.x += -100;
+shape2.position.y += 70;
+shape2.position.z += 100;
 
 
 
@@ -174,6 +178,12 @@ function moveCamera() {
   shape2.rotation.x += 0.005;
   shape2.rotation.y += 0.075;
   shape2.rotation.z += 1.05;
+  shape3.rotation.x += 0.005;
+  shape3.rotation.y += 0.075;
+  shape3.rotation.z += 1.05;
+  shape4.rotation.x += 0.005;
+  shape4.rotation.y += 0.075;
+  shape4.rotation.z += 1.05;
   
   camera.position.z = t * -0.03;
   camera.position.x = t * -0.0002;
@@ -190,6 +200,16 @@ function animate() {
 
   Icosahedron.rotation.x += 0.01;
   Icosahedron.rotation.y += 0.0005;
+
+  shape2.rotation.x += 0.01;
+  shape2.rotation.y += 0.0005;
+
+  shape3.rotation.x += 0.01;
+  shape3.rotation.y += 0.0005;
+
+  shape4.rotation.x += 0.01;
+  shape4.rotation.y += 0.0005;
+
   solarsystem.rotation.z += 0.001;
   solarsystem.rotation.x += 0.01;
   solarsystem2.rotation.y += 0.0005;
