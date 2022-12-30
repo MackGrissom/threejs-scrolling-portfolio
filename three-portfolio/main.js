@@ -90,14 +90,14 @@ scene.background = spaceTexture;
 
 // scene.add(mack);
 
-// texture & positioning
+// textures & positioning
 
-const oilTexture = new THREE.TextureLoader().load('texture1.jpg');
-const normalTexture = new THREE.TextureLoader().load('normal.jpg');
-const normalTexture4 = new THREE.TextureLoader().load('normal4.jpg');
-const fivek = new THREE.TextureLoader().load('5k.jpeg')
-const lava = new THREE.TextureLoader().load('lava.jpg')
-const paint = new THREE.TextureLoader().load('paint.jpg')
+const oilTexture = new THREE.TextureLoader().load('./Assets/textures/texture1.jpg');
+const normalTexture = new THREE.TextureLoader().load('./Assets/textures/normal.jpg');
+const normalTexture4 = new THREE.TextureLoader().load('./Assets/textures/normal4.jpg');
+const fivek = new THREE.TextureLoader().load('./Assets/textures/5k.jpeg')
+const lava = new THREE.TextureLoader().load('./Assets/textures/lava.jpg')
+const paint = new THREE.TextureLoader().load('./Assets/textures/paint.jpg')
 
   
 const texture = new THREE.Mesh(
