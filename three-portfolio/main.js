@@ -2,9 +2,10 @@
 import './style.css';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
 
 // Setup
-
 const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -20,6 +21,28 @@ camera.position.setX(-3);
 
 renderer.render(scene, camera);
 
+// loading in external 3d models
+// const glftLoader = new GLTFLoader();
+// glftLoader.load({Earth}), (gltfScene) => {
+// scene.add(gltfScene)
+// }
+
+const loader = new GLTFLoader();
+
+loader.load( '/Assets/Earth3d/scene.gltf', function ( gltf ) {
+
+	scene.add( gltf.scene );
+
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+} );
+
+
+
+
+
 // Icosahedron
 
 const geometry = new THREE.IcosahedronGeometry(15, 1, 16, 100);
@@ -30,7 +53,7 @@ const material3 = new THREE.MeshStandardMaterial({ color: 'black', wireframe: tr
 
 const Icosahedron = new THREE.Mesh(geometry, material);
 scene.add(Icosahedron);
-
+// 
 
 
 
@@ -41,12 +64,16 @@ pointLight.position.set(5, 5, 5);
 
 const ambientLight = new THREE.AmbientLight(0xffffff);
 scene.add(pointLight, ambientLight);
+// 
+
+
+
 
 // Helpers
 
-// const lightHelper = new THREE.PointLightHelper(pointLight)
-// const gridHelper = new THREE.GridHelper(200, 50);
-// scene.add(lightHelper, gridHelper)
+const lightHelper = new THREE.PointLightHelper(pointLight)
+const gridHelper = new THREE.GridHelper(200, 50);
+scene.add(lightHelper, gridHelper)
 
 
 // controls and stars
